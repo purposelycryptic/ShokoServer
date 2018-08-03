@@ -50,7 +50,8 @@ namespace AniDBAPI.Commands
                 Directory.CreateDirectory(filePath);
 
             //string fileName = string.Format("MyList_{0}_{1}.xml", DateTime.Now.ToString("yyyyMMdd"), DateTime.Now.ToString("HHmmss"));
-            string fileName = string.Format("MyList.xml");
+            //string fileName = string.Format("MyList.xml");           Format function seems unnecessary here, remnant from previous implementation above?
+            string fileName = "MyList.xml";
             string fileNameWithPath = Path.Combine(filePath, fileName);
 
             StreamWriter sw;
@@ -93,7 +94,7 @@ namespace AniDBAPI.Commands
                 docAnime = new XmlDocument();
                 docAnime.LoadXml(xmlResult);
             }
-            if (null != docAnime)
+            if (docAnime != null)
             {
                 myListItems = AniDBHTTPHelper.ProcessMyList(docAnime);
                 if (myListItems != null)

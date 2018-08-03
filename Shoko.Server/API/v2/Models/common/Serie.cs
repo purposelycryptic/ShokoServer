@@ -87,9 +87,9 @@ namespace Shoko.Server.API.v2.Models.common
                 id = -1,
                 aid = anime.AnimeID,
                 summary = anime.Description,
-                rating = Math.Round(anime.Rating / 100D, 1)
+                rating = Math.Round(anime.TempRating / 100D, 1)
                     .ToString(CultureInfo.InvariantCulture),
-                votes = anime.VoteCount.ToString(),
+                votes = anime.TempVoteCount.ToString(),
                 name = anime.MainTitle,
                 ismovie = anime.AnimeType == (int) AnimeType.Movie ? 1 : 0
             };

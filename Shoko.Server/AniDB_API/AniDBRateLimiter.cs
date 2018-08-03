@@ -13,18 +13,18 @@ namespace Shoko.Server.AniDB_API
         // Short Term:
         // A Client MUST NOT send more than 0.5 packets per second(that's one packet every two seconds, not two packets a second!)
         // The server will start to enforce the limit after the first 5 packets have been received.
-        private static int ShortDelay = 2500;
+        private static int ShortDelay = 3000;
 
         // Long Term:
         // A Client MUST NOT send more than one packet every four seconds over an extended amount of time.
         // An extended amount of time is not defined. Use common sense.
-        private static int LongDelay = 4500;
+        private static int LongDelay = 5000;
 
-        // Switch to longer delay after 1 hour
-        private static long shortPeriod = 60 * 60 * 1000;
+        // Switch to longer delay after 30 minutes
+        private static long shortPeriod = 30 * 60 * 1000;
 
-        // Switch to shorter delay after 30 minutes of inactivity
-        private static long resetPeriod = 30 * 60 * 1000;
+        // Switch to shorter delay after 45 minutes of inactivity
+        private static long resetPeriod = 45 * 60 * 1000;
 
         private static Stopwatch _requestWatch = new Stopwatch();
 

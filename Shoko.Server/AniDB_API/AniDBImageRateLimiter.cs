@@ -10,7 +10,7 @@ namespace Shoko.Server.AniDB_API
         private static readonly AniDbImageRateLimiter instance = new AniDbImageRateLimiter();
 
         // Short Term rate
-        private static int ShortDelay = 150;
+        private static int ShortDelay = 250;
         private static Stopwatch _requestWatch = new Stopwatch();
 
         // Explicit static constructor to tell C# compiler

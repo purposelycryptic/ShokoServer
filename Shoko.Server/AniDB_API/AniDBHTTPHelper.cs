@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Xml;
 using NLog;
@@ -140,7 +141,7 @@ namespace AniDBAPI
             if (!string.IsNullOrEmpty(xmlresult))
             {
                 int index = xmlresult.IndexOf(@">banned<", StringComparison.InvariantCultureIgnoreCase);
-                if (-1 < index)
+                if (index != -1)
                 {
                     ShokoService.AnidbProcessor.IsHttpBanned = true;
                     result = true;
@@ -164,7 +165,15 @@ namespace AniDBAPI
                 return null;
             }
 
-            anime.Description = TryGetProperty(docAnime, "anime", "description")?.Replace('`', '\'');
+            //anime.Description = TryGetProperty(docAnime, "anime", "description")?.Replace('`', '\'');
+            //Replaced above with cleaned description
+            string desc = TryGetProperty(docAnime, "anime", "description")?.Replace('`', '\'');
+            Regex linkRemoveRE = new Regex(@"http://anidb\.net/[a-z]{1,2}[0-9]+ \[(.+?)\]");
+            Regex noteRemoveRE = new Regex(@"\* B.*\n+|\* A.*\n+|\nSource:[\w\W]*|\nNote:[\w\W]*");
+            desc = Regex.Replace(desc, linkRemoveRE, "$1");
+            desc = Regex.Replace(desc, noteRemoveRE, "");
+            desc = Replace(desc, @"\* B.*\n+|\nSource:[\w\W]*|\nNote:[\w\W]*", "");
+            anime.Description = desc;
             anime.AnimeTypeRAW = TryGetProperty(docAnime, "anime", "type");
 
 
