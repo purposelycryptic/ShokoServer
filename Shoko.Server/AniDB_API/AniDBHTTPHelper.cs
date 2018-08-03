@@ -168,11 +168,13 @@ namespace AniDBAPI
             //anime.Description = TryGetProperty(docAnime, "anime", "description")?.Replace('`', '\'');
             //Replaced above with cleaned description
             string desc = TryGetProperty(docAnime, "anime", "description")?.Replace('`', '\'');
-            Regex linkRemoveRE = new Regex(@"http://anidb\.net/[a-z]{1,2}[0-9]+ \[(.+?)\]");
-            Regex noteRemoveRE = new Regex(@"\* B.*\n+|\* A.*\n+|\nSource:[\w\W]*|\nNote:[\w\W]*");
-            desc = Regex.Replace(desc, linkRemoveRE, "$1");
+            //Regex linkRemoveRE = new Regex(@"http://anidb\.net/[a-z]{1,2}[0-9]+ \[(.+?)\]");
+            // Regex noteRemoveRE = new Regex(@"\* B.*\n+|\* A.*\n+|\nSource:[\w\W]*|\nNote:[\w\W]*");
+            string linkRemoveRE = @"http://anidb\.net/[a-z]{1,2}[0-9]+ \[(.+?)\]";
+            string noteRemoveRE = @"\* B.*\n+|\* A.*\n+|\nSource:[\w\W]*|\nNote:[\w\W]*";
+            string replaceRE = "$1";
+            desc = Regex.Replace(desc, linkRemoveRE, replaceRE);
             desc = Regex.Replace(desc, noteRemoveRE, "");
-            desc = Replace(desc, @"\* B.*\n+|\nSource:[\w\W]*|\nNote:[\w\W]*", "");
             anime.Description = desc;
             anime.AnimeTypeRAW = TryGetProperty(docAnime, "anime", "type");
 
