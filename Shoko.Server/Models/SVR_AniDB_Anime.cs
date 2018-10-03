@@ -663,10 +663,12 @@ ORDER BY count(DISTINCT AnimeID) DESC, Anime_GroupName ASC";
             {
                 string thisLanguage = nlan.Language.Trim().ToUpper();
 
-                // Romaji and English titles will be contained in MAIN and/or OFFICIAL
+                // Romaji, English, X_ZHT and X-KOT titles will be contained in MAIN and/or OFFICIAL
                 // we won't use synonyms for these two languages
                 if (thisLanguage.Equals(Shoko.Models.Constants.AniDBLanguageType.Romaji) ||
-                    thisLanguage.Equals(Shoko.Models.Constants.AniDBLanguageType.English))
+                    thisLanguage.Equals(Shoko.Models.Constants.AniDBLanguageType.English) ||
+                    thisLanguage.Equals(Shoko.Models.Constants.AniDBLanguageType.XKot) ||
+                    thisLanguage.Equals(Shoko.Models.Constants.AniDBLanguageType.XZht))
                 {
                     foreach (AniDB_Anime_Title title in titles)
                     {

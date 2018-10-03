@@ -1051,6 +1051,50 @@ namespace Shoko.Server.Renamer
 
                 #endregion
 
+                #region Test if Korean Romanized title exists
+
+                string tagAnimeNameXKot = Constants.FileRenameTag.AnimeNameXKot.Substring(1,
+                    Constants.FileRenameTag.AnimeNameXKot.Length - 1); // remove % at the front
+                if (test.Trim().Equals(tagAnimeNameXKot, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (anime.GetTitles().Any(ti => ti.Language.Equals(AniDBLanguageType.XKot,
+                                                        StringComparison.InvariantCultureIgnoreCase) &&
+                                                    (ti.TitleType.Trim()
+                                                         .Equals(AnimeTitleType.Main,
+                                                             StringComparison.InvariantCultureIgnoreCase) ||
+                                                     ti.TitleType.Trim()
+                                                         .Equals(AnimeTitleType.Official,
+                                                             StringComparison.InvariantCultureIgnoreCase))))
+                    {
+                        return !notCondition;
+                    }
+                    return notCondition;
+                }
+
+                #endregion
+
+                #region Test if Chinese-Romanized title exists
+
+                string tagAnimeNameXZht = Constants.FileRenameTag.AnimeNameXZht.Substring(1,
+                    Constants.FileRenameTag.AnimeNameXZht.Length - 1); // remove % at the front
+                if (test.Trim().Equals(tagAnimeNameXZht, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    if (anime.GetTitles().Any(ti => ti.Language.Equals(AniDBLanguageType.XZht,
+                                                        StringComparison.InvariantCultureIgnoreCase) &&
+                                                    (ti.TitleType.Trim()
+                                                         .Equals(AnimeTitleType.Main,
+                                                             StringComparison.InvariantCultureIgnoreCase) ||
+                                                     ti.TitleType.Trim()
+                                                         .Equals(AnimeTitleType.Official,
+                                                             StringComparison.InvariantCultureIgnoreCase))))
+                    {
+                        return !notCondition;
+                    }
+                    return notCondition;
+                }
+
+                #endregion
+
                 #region Test if episode name (english) exists
 
                 string tagEpisodeNameEnglish = Constants.FileRenameTag.EpisodeNameEnglish.Substring(1,

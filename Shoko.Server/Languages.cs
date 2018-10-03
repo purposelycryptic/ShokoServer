@@ -10,7 +10,7 @@ namespace Shoko.Server
             {
                 string[] lans = new string[]
                 {
-                    "EN", "X-JAT", "JA", "AR", "BD", "BG", "CA", "CS", "CZ", "DA", "DK", "DE", "EL", "ES", "ET", "FI",
+                    "EN", "X-JAT", "JA", "X-KOT", "X-ZHT", "AR", "BD", "BG", "CA", "CS", "CZ", "DA", "DK", "DE", "EL", "ES", "ET", "FI",
                     "FR", "GL", "GR", "HE", "HU", "IL", "IT", "KO", "LT", "MN", "MS", "MY", "NL", "NO", "PL", "PT",
                     "PT-BR", "RO", "RU", "SK", "SL", "SR", "SV", "SE", "TH", "TR", "UK", "UA", "VI", "ZH", "ZH-HANS",
                     "ZH-HANT"
@@ -42,9 +42,13 @@ namespace Shoko.Server
                 case "EN":
                     return @"/Images/Flags/uk_unitedkingdom.gif";
                 case "X-JAT":
-                    return @"/Images/Flags/jp.gif";
+                    return @"/Images/Flags/jp.gif"; // Japanese (Romaji)
                 case "JA":
-                    return @"/Images/Flags/jp.gif";
+                    return @"/Images/Flags/jp.gif"; // Japanese
+                case "X-ZHT":
+                    return @"/Images/Flags/cn.gif"; // Chinese (Romanized)
+                case "X-KOT":
+                    return @"/Images/Flags/ko.gif"; // Korean (Romanized)
                 case "AR":
                     return @"/Images/Flags/ar.gif"; // Arabic
                 case "BD":
@@ -148,6 +152,10 @@ namespace Shoko.Server
                     return "English (en)";
                 case "X-JAT":
                     return "Romaji (x-jat)";
+                case "X-KOT":
+                    return "Korean - Romanized (x-kot)";
+                case "X-ZHT":
+                    return "Chinese - Romanized (x-zht)";
                 case "JA":
                     return "Kanji";
                 case "AR":

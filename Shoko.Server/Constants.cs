@@ -44,6 +44,8 @@
             public static readonly string AnimeNameRomaji = "%ann";
             public static readonly string AnimeNameKanji = "%kan";
             public static readonly string AnimeNameEnglish = "%eng";
+            public static readonly string AnimeNameXKot = "%xko";
+            public static readonly string AnimeNameXZht = "%xzh";
             public static readonly string EpisodeNameRomaji = "%epn";
             public static readonly string EpisodeNameEnglish = "%epr";
             public static readonly string EpisodeNumber = "%enr";
